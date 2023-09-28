@@ -1,6 +1,6 @@
 ---
-name: "[Label] Title"
-about: 이슈를 작성해주세요.
+name: ISSUE
+about: '"[Label] Title" 양식으로 이슈 타이틀을 작성해주세요.'
 title: ''
 labels: ''
 assignees: ''
