@@ -10,6 +10,39 @@
 </head>
 
 <body>
+  <h1>Settings</h1>
+
+  <form>
+    <h2>글꼴</h2>
+
+    <label for="size">크기</label>
+    <button>-</button><input type="number" id="size" value="16"><button>+</button>
+
+    <label for="font">폰트</label>
+
+    <div aria-hidden="true">
+      <button>선택된 폰트 보여줄 영역</button>
+      <ul>
+        <li><button>폰트1</button></li>
+        <li><button>폰트2</button></li>
+        <li><button>폰트3</button></li>
+      </ul>
+    </div>
+
+    <select class="a11y-hidden" id="font">
+      <option value="">폰트1</option>
+      <option value="">폰트2</option>
+      <option value="">폰트3</option>
+    </select>
+
+    <h2>색상</h2>
+
+    <label for="font-color">글꼴</label>
+    <input type="color" name="font-color" id="font-color">
+
+    <label for="bg-color">배경</label>
+    <input type="color" name="bg-color" id="bg-color">
+  </form>
 
   <script src="./popup.js"></script>
 </body>
