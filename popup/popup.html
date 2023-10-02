@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./popup.css" />
+    <title>Reading Comfort</title>
+  </head>
+
+  <body>
+    <h1>Settings</h1>
+
+    <form>
+      <div class="section">
+        <h2 class="title">폰트 크기</h2>
+        <div>
+          <button type="button" class="minus">-</button>
+          <span class="font-size">16</span>
+          <button type="button" class="plus">+</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="title" aria-hidden="true">폰트 종류</h2>
+        <div aria-hidden="true">
+          <button type="button" class="selected-font">
+            선택된 폰트 보여줄 영역
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_4624_2541)">
+                <path d="M5.75593 8.12713C5.35716 8.58759 4.64284 8.58759 4.24407 8.12713L1.23682 4.65465C0.675943 4.00701 1.136 3 1.99275 3L8.00725 3C8.864 3 9.32406 4.00701 8.76318 4.65465L5.75593 8.12713Z" fill="#1C85E8" />
+              </g>
+              <defs>
+                <clipPath id="clip0_4624_2541">
+                  <rect width="10" height="10" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </button>
+          <ul class="font-options">
+            <li><button type="button">폰트1</button></li>
+            <li><button type="button">폰트2</button></li>
+            <li><button type="button">폰트3</button></li>
+            <li><button type="button">폰트4</button></li>
+            <li><button type="button">폰트5</button></li>
+            <li><button type="button">폰트6</button></li>
+            <li><button type="button">폰트7</button></li>
+            <li><button type="button">폰트8</button></li>
+          </ul>
+        </div>
+
+        <label class="a11y-hidden" for="font">폰트</label>
+        <select class="a11y-hidden" id="font">
+          <option value="폰트1">폰트1</option>
+          <option value="폰트2">폰트2</option>
+          <option value="폰트3">폰트3</option>
+          <option value="폰트4">폰트4</option>
+          <option value="폰트5">폰트5</option>
+          <option value="폰트6">폰트6</option>
+          <option value="폰트7">폰트7</option>
+          <option value="폰트8">폰트8</option>
+        </select>
+      </div>
+
+      <div class="section columns">
+        <h2 class="title">폰트 굵게</h2>
+        <input type="checkbox" name="font-bold" id="font-bold" class="a11y-hidden" />
+        <label class="toggle" for="font-bold" aria-hidden="true">
+          <span class="toggle-btn"></span>
+        </label>
+      </div>
+
+      <div class="section">
+        <h2 class="title">폰트 색상</h2>
+        <div class="colors">
+          <button type="button" class="color-button black"></button>
+          <button type="button" class="color-button yellow on"></button>
+          <button type="button" class="color-button white"></button>
+          <button type="button" class="color-button custom"></button>
+          <label class="a11y-hidden">
+            폰트 색상 팔레트
+            <input type="color" name="font-color" />
+          </label>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="title">배경 색상</h2>
+        <div class="colors">
+          <button type="button" class="color-button black on"></button>
+          <button type="button" class="color-button yellow"></button>
+          <button type="button" class="color-button white"></button>
+          <button type="button" class="color-button custom"></button>
+          <label class="a11y-hidden">
+            배경 색상 팔레트
+            <input type="color" name="bg-color" />
+          </label>
+        </div>
+      </div>
+    </form>
+
+    <script src="./popup.js"></script>
+  </body>
+</html>

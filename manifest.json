@@ -1,0 +1,30 @@
+{
+  "name": "Reading Comfort",
+  "description": "웹페이지의 배경색, 글꼴, 글자 크기를 사용자가 설정할 수 있게하여 가독성을 향상시켜줍니다",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "/images/icon-16.png",
+      "32": "/images/icon-32.png",
+      "64": "/images/icon-64.png",
+      "128": "/images/icon-128.png"
+    },
+    "default_title" : "Reading Comfort"
+  },
+  "icons": {
+    "16": "/images/icon-16.png",
+    "32": "/images/icon-32.png",
+    "64": "/images/icon-64.png",
+    "128": "/images/icon-128.png"
+  }
+}
