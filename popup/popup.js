@@ -9,6 +9,15 @@ const $backgroundColors = document.querySelector(".background-colors");
 const FONT_SIZE_MAX = 64;
 const FONT_SIZE_MIN = 10;
 
+// content-script로 message 보내는 함수
+const sendToContentScript = (title, data) => {
+  // active tab에 대한 정보를 가져옵니다.
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    // content script에 메시지를 보내어 DOM 변경을 요청합니다.
+    chrome.tabs.sendMessage(tabs[0].id, { title: title, data: data });
+  });
+};
+
 const increaseFontSize = ($fontSizeSpan) => {
   $fontSizeSpan.textContent = 1 * $fontSizeSpan.textContent + 2;
 };
