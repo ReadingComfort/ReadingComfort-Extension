@@ -69,6 +69,11 @@ const assignFontOption = (e) => {
   }
 };
 
+// 폰트 굵기 토글
+const toggleBoldFont = (e) => {
+  sendToContentScript("fontBold", e.target.checked);
+};
+
 const colorHandler = (e) => {
   if (e.target.classList.contains("custom")) {
     e.currentTarget.querySelector("input[type='color']").click();
@@ -84,6 +89,7 @@ const keyboardItemClick = (e, item) => {
 $fontSizeSection.addEventListener("click", fontSizeHandler);
 $fontSelectButton.addEventListener("click", fontDropDownToggle);
 $fontOptionsDropDown.addEventListener("click", assignFontOption);
+$fontBoldCheckBox.addEventListener("click", toggleBoldFont);
+$fontBoldToggleButton.addEventListener("keydown", (e) => keyboardItemClick(e, $fontBoldCheckBox));
 $fontColors.addEventListener("click", (e) => colorHandler(e));
 $backgroundColors.addEventListener("click", (e) => colorHandler(e));
-$fontBoldToggleButton.addEventListener("keydown", (e) => keyboardItemClick(e, $fontBoldCheckBox));

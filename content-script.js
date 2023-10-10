@@ -36,5 +36,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
       fontAction("fontFamily", `"${request.data}", sans-serif`);
       break;
+
+    case "fontBold":
+      fontAction("fontWeight", request.data ? "700" : "500");
+      break;
   }
 });
