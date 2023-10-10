@@ -14,5 +14,27 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "fontSize":
       fontAction("fontSize", request.data + "px");
       break;
+
+    case "fontFamily":
+      const isHaveWebFontEmbeddingCode = document.head.querySelector("link[href='https://fonts.googleapis.com']") && document.head.querySelector("link[href='https://fonts.gstatic.com']");
+      const isHaveTargetFontEmbeddingCode = !document.head.querySelector(`link[href='https://fonts.googleapis.com/css2?family=${request.data}:wght@400;500;700&display=swap']`);
+
+      if (isHaveWebFontEmbeddingCode) {
+        if (isHaveTargetFontEmbeddingCode) {
+          document.head.insertAdjacentHTML("afterbegin", `<link href="https://fonts.googleapis.com/css2?family=${request.data}:wght@400;500;700&display=swap" rel="stylesheet" />`);
+        }
+      } else {
+        document.head.insertAdjacentHTML(
+          "afterbegin",
+          `
+              <link rel="preconnect" href="https://fonts.googleapis.com" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+              <link href="https://fonts.googleapis.com/css2?family=${request.data}:wght@400;500;700&display=swap" rel="stylesheet" />
+            `
+        );
+      }
+
+      fontAction("fontFamily", `"${request.data}", sans-serif`);
+      break;
   }
 });

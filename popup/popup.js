@@ -49,17 +49,22 @@ const dicreaseFontSize = ($fontSizeSpan) => {
   sendToContentScript("fontSize", $fontSizeSpan.textContent);
 };
 
+// 폰트 드롭다운 메뉴 닫기
 const fontDropDownClose = (e) => {
   $fontSelectButton.classList.remove("active");
 };
 
+// 폰트 드롭다운 메뉴 토글
 const fontDropDownToggle = () => {
   $fontSelectButton.classList.toggle("active");
 };
 
+// 폰트 종류 설정
 const assignFontOption = (e) => {
+  console.log(e.currentTarget);
   if (e.target.type === "button") {
     $fontSelectButton.querySelector(".selected-font").textContent = e.target.textContent;
+    sendToContentScript("fontFamily", e.target.value);
     fontDropDownClose();
   }
 };
