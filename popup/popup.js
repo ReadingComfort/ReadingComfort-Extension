@@ -18,35 +18,31 @@ const sendToContentScript = (title, data) => {
   });
 };
 
+// 폰트 사이즈 조정 함수
+const adjustFontSize = ($fontSizeSpan, adjustment) => {
+  let newFontSize = Number($fontSizeSpan.textContent) + Number(adjustment);
+
+  if (newFontSize >= FONT_SIZE_MIN && newFontSize <= FONT_SIZE_MAX) {
+    $fontSizeSpan.textContent = newFontSize;
+    sendToContentScript("fontSize", newFontSize);
+  }
+};
+
 // fontSize 조절 관련 기능 함수
 const fontSizeHandler = (e) => {
-  const $fontSizeSpan = e.currentTarget.querySelector(".font-size");
+  const isPlusBtnClicked = e.target.classList.contains("plus");
+  const isMinusBtnClicked = e.target.classList.contains("minus");
+  if (!isPlusBtnClicked && !isMinusBtnClicked) return;
+
   const $plusButton = e.currentTarget.querySelector(".plus");
   const $minusButton = e.currentTarget.querySelector(".minus");
+  const $fontSizeSpan = e.currentTarget.querySelector(".font-size");
+  const adjustmentValue = isPlusBtnClicked ? 2 : -2;
 
-  switch (e.target.className) {
-    case "plus":
-      increaseFontSize($fontSizeSpan);
-      break;
-    case "minus":
-      dicreaseFontSize($fontSizeSpan);
-      break;
-  }
+  adjustFontSize($fontSizeSpan, adjustmentValue);
 
   $plusButton.disabled = $fontSizeSpan.textContent == FONT_SIZE_MAX;
   $minusButton.disabled = $fontSizeSpan.textContent == FONT_SIZE_MIN;
-};
-
-// 폰트 사이즈 증가
-const increaseFontSize = ($fontSizeSpan) => {
-  $fontSizeSpan.textContent = 1 * $fontSizeSpan.textContent + 2;
-  sendToContentScript("fontSize", $fontSizeSpan.textContent);
-};
-
-// 폰트 사이즈 감소
-const dicreaseFontSize = ($fontSizeSpan) => {
-  $fontSizeSpan.textContent -= 2;
-  sendToContentScript("fontSize", $fontSizeSpan.textContent);
 };
 
 // 폰트 드롭다운 메뉴 닫기
