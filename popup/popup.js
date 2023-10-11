@@ -6,6 +6,9 @@ const $fontBoldToggleButton = document.querySelector(".toggle");
 const $fontOptionsDropDown = document.querySelector(".font-options");
 const $fontColors = document.querySelector(".font-colors");
 const $backgroundColors = document.querySelector(".background-colors");
+const $fontColorsSection = document.querySelector(".font-colors");
+const $fontColorInput = document.querySelector(".font-color-input");
+const $fontColorCustomButton = document.querySelector("label[for='font-custom']");
 const FONT_SIZE_MAX = 64;
 const FONT_SIZE_MIN = 14;
 
@@ -70,10 +73,35 @@ const toggleBoldFont = (e) => {
   sendToContentScript("fontBold", e.target.checked);
 };
 
+// 주어진 컬러 선택
+const pickGivenColor = (e, title) => {
+  const targetColor = e.target.className.split(" ")[1];
+  targetColor && sendToContentScript(title, targetColor);
+};
+
+// <input type="color"> 열기
 const colorHandler = (e) => {
   if (e.target.classList.contains("custom")) {
     e.currentTarget.querySelector("input[type='color']").click();
   }
+};
+
+// 디바운싱
+const debouncing = (e, variable, title) => {
+  if (variable) {
+    clearTimeout(variable);
+  }
+  variable = setTimeout(() => {
+    sendToContentScript(title, e.target.value);
+  }, 200);
+
+  return variable;
+};
+
+// 컬러 커스터마이징
+const pickCustomColor = (e, button, variable, title) => {
+  button.style.background = e.target.value;
+  variable = debouncing(e, variable, title);
 };
 
 const keyboardItemClick = (e, item) => {
@@ -89,3 +117,7 @@ $fontBoldCheckBox.addEventListener("click", toggleBoldFont);
 $fontBoldToggleButton.addEventListener("keydown", (e) => keyboardItemClick(e, $fontBoldCheckBox));
 $fontColors.addEventListener("click", (e) => colorHandler(e));
 $backgroundColors.addEventListener("click", (e) => colorHandler(e));
+$fontColorsSection.addEventListener("keydown", (e) => keyboardItemClick(e, e.target));
+$fontColorsSection.addEventListener("click", (e) => pickGivenColor(e, "fontColor"));
+let fontCustomColor;
+$fontColorInput.addEventListener("input", (e) => pickCustomColor(e, $fontColorCustomButton, fontCustomColor, "fontColor"));

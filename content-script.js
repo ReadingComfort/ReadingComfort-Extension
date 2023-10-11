@@ -40,5 +40,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     case "fontBold":
       fontAction("fontWeight", request.data ? "700" : "500");
       break;
+
+    case "fontColor":
+      fontAction("color", request.data);
+      break;
   }
 });
