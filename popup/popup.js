@@ -9,6 +9,9 @@ const $backgroundColors = document.querySelector(".background-colors");
 const $fontColorsSection = document.querySelector(".font-colors");
 const $fontColorInput = document.querySelector(".font-color-input");
 const $fontColorCustomButton = document.querySelector("label[for='font-custom']");
+const $backgroundColorsSection = document.querySelector(".background-colors");
+const $backgroundColorInput = document.querySelector(".bg-color-input");
+const $backgroundColorCustomButton = document.querySelector("label[for='bg-custom']");
 const FONT_SIZE_MAX = 64;
 const FONT_SIZE_MIN = 14;
 
@@ -121,3 +124,7 @@ $fontColorsSection.addEventListener("keydown", (e) => keyboardItemClick(e, e.tar
 $fontColorsSection.addEventListener("click", (e) => pickGivenColor(e, "fontColor"));
 let fontCustomColor;
 $fontColorInput.addEventListener("input", (e) => pickCustomColor(e, $fontColorCustomButton, fontCustomColor, "fontColor"));
+$backgroundColorsSection.addEventListener("keydown", (e) => keyboardItemClick(e, e.target));
+$backgroundColorsSection.addEventListener("click", (e) => pickGivenColor(e, "backgroundColor"));
+let backgroundCustomColor;
+$backgroundColorInput.addEventListener("input", (e) => pickCustomColor(e, $backgroundColorCustomButton, backgroundCustomColor, "backgroundColor"));
